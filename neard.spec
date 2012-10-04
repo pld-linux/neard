@@ -2,7 +2,7 @@ Summary:	Near Field Communication manager
 Summary(pl.UTF-8):	Zarządca połączeń NFC (Near Field Communication)
 Name:		neard
 Version:	0.6
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://www.kernel.org/pub/linux/network/nfc/%{name}-%{version}.tar.xz
@@ -69,6 +69,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# for external plugins
+install -d $RPM_BUILD_ROOT%{_libdir}/near/plugins
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -78,7 +81,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/neard
 %dir %{_libdir}/near
 %dir %{_libdir}/near/plugins
-%dir %{_sysconfdir}/neard
+# not used yet
+#%dir %{_sysconfdir}/neard
 /etc/dbus-1/system.d/org.neard.conf
 
 %files devel
