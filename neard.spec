@@ -2,7 +2,7 @@ Summary:	Near Field Communication manager
 Summary(pl.UTF-8):	Zarządca połączeń NFC (Near Field Communication)
 Name:		neard
 Version:	0.9
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://www.kernel.org/pub/linux/network/nfc/%{name}-%{version}.tar.xz
