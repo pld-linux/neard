@@ -35,9 +35,9 @@ neard to stos NFC działający w przestrzeni użytkownika w oparciu o
 podsystem NFC jądra Linuksa.
 
 NFC (Near Field Communication - komunikacja bliskiego zasięgu) to
-krótkozasięgowa (kilka cali/centymetrów) technologia radiowa,
+krótkozasięgowa (kilka cali/centymetrów) technika radiowa,
 pozwalająca na komunikację między urządzeniami stykającymi się lub
-chwilowo trzymanymi obok siebie. NFC to technologia otwarta,
+chwilowo trzymanymi obok siebie. NFC to technika otwarta,
 standaryzowana prez NFC Forum. Jest oparta na RFID.
 
 %package devel
