@@ -1,12 +1,12 @@
 Summary:	Near Field Communication manager
 Summary(pl.UTF-8):	Zarządca połączeń NFC (Near Field Communication)
 Name:		neard
-Version:	0.10
+Version:	0.11
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://www.kernel.org/pub/linux/network/nfc/%{name}-%{version}.tar.xz
-# Source0-md5:	203d2261333b2c2121849efcfd09c46e
+# Source0-md5:	e8c5b750edaf357a66b5d99c793288f9
 URL:		https://01.org/linux-nfc
 BuildRequires:	dbus-devel >= 1.2
 BuildRequires:	glib2-devel >= 1:2.28
@@ -60,7 +60,8 @@ Pliki nagłówkowe dla wtyczek neard.
 
 %build
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--enable-tools
 
 %{__make}
 
@@ -79,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
+%attr(755,root,root) %{_bindir}/nfctool
 %dir %{_libexecdir}/nfc
 %attr(755,root,root) %{_libexecdir}/nfc/neard
 %dir %{_libdir}/near
@@ -86,6 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 # not used yet
 #%dir %{_sysconfdir}/neard
 /etc/dbus-1/system.d/org.neard.conf
+%{_mandir}/man1/nfctool.1*
 %{_mandir}/man5/neard.conf.5*
 %{_mandir}/man8/neard.8*
 
