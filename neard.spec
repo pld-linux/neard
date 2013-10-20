@@ -1,12 +1,12 @@
 Summary:	Near Field Communication manager
 Summary(pl.UTF-8):	Zarządca połączeń NFC (Near Field Communication)
 Name:		neard
-Version:	0.12
+Version:	0.13
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://www.kernel.org/pub/linux/network/nfc/%{name}-%{version}.tar.xz
-# Source0-md5:	4fa64a21c9df5a2da396505512803138
+# Source0-md5:	bab0fc7f92f45222b9c648c1481ac206
 URL:		https://01.org/linux-nfc
 BuildRequires:	dbus-devel >= 1.2
 BuildRequires:	glib2-devel >= 1:2.28
