@@ -1,16 +1,21 @@
 Summary:	Near Field Communication manager
 Summary(pl.UTF-8):	Zarządca połączeń NFC (Near Field Communication)
 Name:		neard
-Version:	0.14
+Version:	0.15
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	https://www.kernel.org/pub/linux/network/nfc/%{name}-%{version}.tar.xz
-# Source0-md5:	692ba2653d60155255244c87396c486b
+# Source0-md5:	b746ce62eeef88e8de90765e00a75a1c
+Patch0:		%{name}-am.patch
 URL:		https://01.org/linux-nfc
+BuildRequires:	autoconf >= 2.60
+BuildRequires:	automake
 BuildRequires:	dbus-devel >= 1.2
+BuildRequires:	gcc >= 5:3.4
 BuildRequires:	glib2-devel >= 1:2.28
 BuildRequires:	libnl-devel >= 3.2
+BuildRequires:	libtool >= 2:2
 BuildRequires:	linux-libc-headers >= 7:3.6
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
@@ -57,11 +62,21 @@ Pliki nagłówkowe dla wtyczek neard.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-silent-rules \
-	--enable-tools
+	--enable-ese \
+	--enable-pie \
+	--enable-tools \
+	--with-systemdsystemunitdir=%{systemdunitdir} \
+	--with-systemduserunitdir=%{systemduserunitdir}
 
 %{__make}
 
@@ -83,11 +98,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nfctool
 %dir %{_libexecdir}/nfc
 %attr(755,root,root) %{_libexecdir}/nfc/neard
+%attr(755,root,root) %{_libexecdir}/nfc/seeld
 %dir %{_libdir}/near
 %dir %{_libdir}/near/plugins
 # not used yet
 #%dir %{_sysconfdir}/neard
 /etc/dbus-1/system.d/org.neard.conf
+%{systemdunitdir}/neard.service
 %{_mandir}/man1/nfctool.1*
 %{_mandir}/man5/neard.conf.5*
 %{_mandir}/man8/neard.8*
